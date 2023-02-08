@@ -1,6 +1,7 @@
+import { hover } from '@testing-library/user-event/dist/hover';
 import React from 'react'
 import "./QuizView.css";
-const QuizView = ({questions,currentQuestion,handleAnswerClick }) => {
+const QuizView = ({questions,currentQuestion,handleAnswerClick,changeColor,reverseColor}) => {
   return (
     <>
     <div className="question">
@@ -16,7 +17,7 @@ const QuizView = ({questions,currentQuestion,handleAnswerClick }) => {
 
     <div className="answer">
         {questions[currentQuestion].answers.map(({text, isCorrect}) => (
-            <button key={text} onClick ={()=>handleAnswerClick(isCorrect)}>{text}</button>
+            <button onMouseOver={changeColor} onMouseLeave = {reverseColor} key={text} onClick ={()=>handleAnswerClick(isCorrect)}>{text}</button>
 
         ))}
     

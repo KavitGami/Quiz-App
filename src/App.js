@@ -5,6 +5,12 @@ import QuizView from './components/QuizView';
 import ScoreView from './components/ScoreView';
 
 function App() {
+  function changeColor(e){
+    e.target.style.background = 'lightgray'
+  }
+  function reverseColor(e){
+    e.target.style.background = 'rgb(243, 243, 203)'
+  }
   const questions = [
     {
       question: "Which one of the below is not divide and conquer approach?",
@@ -51,9 +57,13 @@ function App() {
   const [score,setScore] = useState(0);
   const [isQuizOver,setiSQuizOver] = useState(false);
   const handleAnswerClick = (isCorrect) => {
-    if (isCorrect) setScore(score+1);
+    if (isCorrect){
+      setScore(score+1)
+      
+    };
     const next = currentQuestion+1;
-    
+
+
     if (next <questions.length){
       setCurrentQuestion(next);
     
@@ -67,7 +77,7 @@ function App() {
   }
   return (
     <div className="App">
-      {isQuizOver ? (<ScoreView handleReset = {handleReset} score = {score} questions = {questions} />) : (<QuizView questions={questions} currentQuestion={currentQuestion} handleAnswerClick = {handleAnswerClick}/>)}
+      {isQuizOver ? (<ScoreView handleReset = {handleReset} score = {score} questions = {questions} />) : (<QuizView questions={questions} currentQuestion={currentQuestion} handleAnswerClick = {handleAnswerClick} changeColor={changeColor} reverseColor= {reverseColor} />)}
       
     </div>
   );
